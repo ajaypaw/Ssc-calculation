@@ -1,7 +1,5 @@
-# SSC Calculation Mastery v16 — Full Theme Rebuild
+# SSC Calculation Mastery v17 — Day 1 Answer-Key Fix
 
-This version keeps the existing portal functionality and Day UI, but rebuilds the global Day/Night color system.
+This build is based on v16.
 
-The screenshot issue was caused by some existing components retaining low-contrast/inherited text colors in Light mode. v16 defines a complete semantic color system and applies it to global text, headings, cards, navigation, inputs, buttons, question options, statuses, progress elements, and links.
-
-Light mode uses dark navy text on soft neutral surfaces. Dark mode uses soft-white text on charcoal/navy surfaces. Explicit theme choice is persisted locally and overrides the operating-system preference.
+The Day 1 report showed 2/50 correct even though the entered answers were mostly correct because the embedded Day 1 `answer` fields were mismatched with their questions. v17 repairs the 50 answer values and clears only the corrupted Day 1 saved result so the test can be taken again accurately.
