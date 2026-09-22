@@ -159,6 +159,335 @@ body.is-testing .appTop{display:none}body.is-testing .appLayout{min-height:100vh
 :root[data-theme="light"] .testLogo,:root[data-theme="light"] .qTool,:root[data-theme="light"] .testIconBtn,:root[data-theme="light"] .actionBtn,:root[data-theme="light"] .countPill,:root[data-theme="light"] .testPalettePanel,:root[data-theme="light"] .reviewQ,:root[data-theme="light"] .metricBox,:root[data-theme="light"] .modeCard,:root[data-theme="light"] .searchBox input,:root[data-theme="light"] .weakItem,:root[data-theme="light"] .consistency,:root[data-theme="light"] .installBar{background:#f8faff;color:#111827}
 :root[data-theme="light"] .questionText{color:#111827}:root[data-theme="light"] .answerInput{background:#fff;color:#111827}:root[data-theme="light"] .mobileNav{background:rgba(255,255,255,.96)}:root[data-theme="light"] .top{background:rgba(255,255,255,.9)}:root[data-theme="light"] .moreGrid button{background:#f8faff;color:#1b2232}
 
+
+/* ===== v14 Day/Roadmap UI ===== */
+.dayGrid,.roadmapGrid,.daysGrid,.day-grid{align-items:stretch}
+.dayCard,.roadmapDay,.dayItem,.day-card{
+  position:relative; overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dayCard:hover,.roadmapDay:hover,.dayItem:hover,.day-card:hover{
+  transform:translateY(-2px);
+}
+.dayCard .dayNumber,.roadmapDay .dayNumber,.dayItem .dayNumber,.day-card .dayNumber{
+  font-weight:900; letter-spacing:.02em;
+}
+@media(max-width:700px){
+  .dayGrid,.roadmapGrid,.daysGrid,.day-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .dayCard,.roadmapDay,.dayItem,.day-card{
+    min-height:116px!important;
+    border-radius:18px!important;
+    padding:15px!important;
+    display:grid!important;
+    grid-template-columns:52px minmax(0,1fr) auto!important;
+    gap:12px!important;
+    align-items:center!important;
+  }
+  .dayCard .dayNumber,.roadmapDay .dayNumber,.dayItem .dayNumber,.day-card .dayNumber{
+    width:52px;height:52px;border-radius:16px;
+    display:grid;place-items:center;
+    font-size:16px;
+  }
+  .dayCard small,.roadmapDay small,.dayItem small,.day-card small{
+    display:block;line-height:1.35;
+  }
+  .dayCard .progress,.roadmapDay .progress,.dayItem .progress,.day-card .progress{
+    margin-top:7px;
+  }
+  .dayCard button,.roadmapDay button,.dayItem button,.day-card button{
+    min-width:82px;min-height:44px;border-radius:12px;
+  }
+  .dayFilters,.roadmapFilters,.day-filter-bar{
+    display:flex!important;gap:8px!important;overflow-x:auto!important;
+    padding:2px 0 8px!important;scrollbar-width:none;
+  }
+  .dayFilters>* ,.roadmapFilters>* ,.day-filter-bar>*{flex:0 0 auto!important}
+}
+@media(max-width:430px){
+  .dayCard,.roadmapDay,.dayItem,.day-card{
+    grid-template-columns:46px minmax(0,1fr)!important;
+    min-height:104px!important;padding:12px!important;
+  }
+  .dayCard .dayNumber,.roadmapDay .dayNumber,.dayItem .dayNumber,.day-card .dayNumber{
+    width:46px;height:46px;border-radius:14px;
+  }
+  .dayCard button,.roadmapDay button,.dayItem button,.day-card button{
+    grid-column:2;justify-self:start;min-height:40px;
+  }
+}
+
+
+/* ===== v15 Comfortable Day / Night Theme ===== */
+:root{
+  --comfort-bg:#f5f7fb;
+  --comfort-surface:#ffffff;
+  --comfort-surface-2:#f8fafc;
+  --comfort-text:#172033;
+  --comfort-muted:#667085;
+  --comfort-border:#e4e7ec;
+  --comfort-primary:#4f46c9;
+  --comfort-primary-soft:#eef2ff;
+  --comfort-success:#16803c;
+  --comfort-warning:#b7791f;
+  --comfort-danger:#c53030;
+  --comfort-shadow:0 6px 24px rgba(15,23,42,.06);
+}
+html[data-theme="light"], body.light-theme{
+  color-scheme:light;
+  background:var(--comfort-bg);
+}
+html[data-theme="dark"], body.dark-theme{
+  color-scheme:dark;
+  --comfort-bg:#111827;
+  --comfort-surface:#182131;
+  --comfort-surface-2:#202b3d;
+  --comfort-text:#e7edf7;
+  --comfort-muted:#a9b5c7;
+  --comfort-border:#334155;
+  --comfort-primary:#9b91ff;
+  --comfort-primary-soft:#29284b;
+  --comfort-success:#4ade80;
+  --comfort-warning:#f5c46b;
+  --comfort-danger:#ff7b7b;
+  --comfort-shadow:0 8px 28px rgba(0,0,0,.24);
+  background:#111827;
+}
+@media (prefers-color-scheme:dark){
+  html:not([data-theme="light"]){color-scheme:dark}
+}
+
+/* Apply only where the existing app does not already provide explicit theme colors. */
+body{
+  background:var(--comfort-bg);
+  color:var(--comfort-text);
+  transition:background-color .22s ease,color .22s ease;
+}
+.card,.panel,.dayCard,.roadmapDay,.dayItem,.day-card,
+.modal,.sheet,.dialog,.hero,.kpi,.stat,.result,.topicCard{
+  box-shadow:var(--comfort-shadow);
+}
+input,select,textarea{
+  background:var(--comfort-surface);
+  color:var(--comfort-text);
+  border-color:var(--comfort-border);
+}
+.muted,.subtle,.secondary{color:var(--comfort-muted)}
+.progress{background:var(--comfort-border)}
+@media (max-width:700px){
+  body{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+
+
+/* =========================================================
+   v16 GLOBAL THEME REBUILD — WCAG-friendly, high readability
+   Light: warm neutral background + dark navy text
+   Dark: charcoal/navy background + soft white text
+   ========================================================= */
+
+:root{
+  --bg:#f6f7fb;
+  --surface:#ffffff;
+  --surface-2:#f1f4f8;
+  --surface-3:#e8edf4;
+  --text:#172033;
+  --text-strong:#0b1220;
+  --text-muted:#475467;
+  --text-soft:#667085;
+  --border:#cfd6e1;
+  --border-strong:#aeb8c7;
+  --primary:#4f46d8;
+  --primary-hover:#4338ca;
+  --primary-text:#ffffff;
+  --success:#137333;
+  --success-bg:#e8f5e9;
+  --warning:#8a5700;
+  --warning-bg:#fff4d6;
+  --danger:#b42318;
+  --danger-bg:#feeceb;
+  --info:#175cd3;
+  --info-bg:#eaf2ff;
+  --shadow:0 5px 20px rgba(16,24,40,.08);
+  --shadow-lg:0 12px 36px rgba(16,24,40,.12);
+}
+
+html[data-theme="dark"],
+body.dark-theme{
+  --bg:#111827;
+  --surface:#1b2535;
+  --surface-2:#222e40;
+  --surface-3:#2b384c;
+  --text:#eef2f7;
+  --text-strong:#ffffff;
+  --text-muted:#c2ccda;
+  --text-soft:#aeb9c9;
+  --border:#46556b;
+  --border-strong:#63738a;
+  --primary:#9188ff;
+  --primary-hover:#aaa3ff;
+  --primary-text:#11142a;
+  --success:#62d98b;
+  --success-bg:#173a29;
+  --warning:#ffd166;
+  --warning-bg:#443514;
+  --danger:#ff817b;
+  --danger-bg:#45201f;
+  --info:#82b4ff;
+  --info-bg:#172d4c;
+  --shadow:0 6px 24px rgba(0,0,0,.25);
+  --shadow-lg:0 14px 40px rgba(0,0,0,.35);
+}
+
+/* Automatic dark preference only when user has not explicitly chosen light. */
+@media (prefers-color-scheme:dark){
+  html:not([data-theme="light"]){
+    --bg:#111827;--surface:#1b2535;--surface-2:#222e40;--surface-3:#2b384c;
+    --text:#eef2f7;--text-strong:#fff;--text-muted:#c2ccda;--text-soft:#aeb9c9;
+    --border:#46556b;--border-strong:#63738a;--primary:#9188ff;--primary-hover:#aaa3ff;
+    --primary-text:#11142a;--success:#62d98b;--success-bg:#173a29;
+    --warning:#ffd166;--warning-bg:#443514;--danger:#ff817b;--danger-bg:#45201f;
+    --info:#82b4ff;--info-bg:#172d4c;
+  }
+}
+
+/* Global text/background reset — fixes inherited low-contrast colors. */
+html,body{
+  background:var(--bg)!important;
+  color:var(--text)!important;
+}
+body *{
+  border-color:var(--border);
+}
+body h1,body h2,body h3,body h4,body h5,body h6,
+body strong,body b,.title,.heading,.label{
+  color:var(--text-strong)!important;
+}
+body p,body span,body small,body li,.muted,.subtle,.secondary,.hint{
+  color:var(--text-muted);
+}
+
+/* Main containers and cards. */
+.app,.layout,.main,.content,.page,.wrapper,.shell,.panel,
+.card,.hero,.kpi,.stat,.result,.topicCard,.dayCard,.roadmapDay,
+.dayItem,.day-card,.speedHero,.speedHeroMain,.speedHeroAside,
+.historyRow,.sessionCard,.featureCard,.modal,.sheet,.dialog{
+  color:var(--text);
+}
+
+.card,.panel,.hero,.kpi,.stat,.result,.topicCard,.dayCard,.roadmapDay,
+.dayItem,.day-card,.featureCard,.historyRow,.sessionCard{
+  background:var(--surface);
+  border-color:var(--border);
+  box-shadow:var(--shadow);
+}
+
+input,select,textarea{
+  background:var(--surface)!important;
+  color:var(--text-strong)!important;
+  border:1px solid var(--border-strong)!important;
+}
+input::placeholder,textarea::placeholder{
+  color:var(--text-soft)!important;
+  opacity:1;
+}
+
+button,.btn{
+  color:var(--text-strong);
+  border-color:var(--border);
+}
+button:hover,.btn:hover{
+  border-color:var(--border-strong);
+}
+
+/* Primary actions remain readable in both modes. */
+button.primary,.btn.primary,.primaryBtn,.cta,.startBtn{
+  background:var(--primary)!important;
+  color:var(--primary-text)!important;
+  border-color:var(--primary)!important;
+}
+button.primary:hover,.btn.primary:hover,.primaryBtn:hover,.cta:hover,.startBtn:hover{
+  background:var(--primary-hover)!important;
+}
+
+/* Navigation/sidebar readability. */
+.side,.sidebar,.top,.appTop,.nav,.navlabel,.sideProfile,.topMetric{
+  color:var(--text)!important;
+}
+.nav{
+  background:transparent;
+}
+.nav:hover,.nav.active{
+  background:var(--surface-2)!important;
+  color:var(--text-strong)!important;
+}
+.nav span,.nav small,.sideProfile small,.navlabel{
+  color:var(--text-muted)!important;
+}
+
+/* Status colors. */
+.success,.correct,.ok{color:var(--success)!important}
+.successBg,.correctBg{background:var(--success-bg)!important}
+.warning,.review{color:var(--warning)!important}
+.warningBg{background:var(--warning-bg)!important}
+.danger,.wrong,.error{color:var(--danger)!important}
+.dangerBg,.wrongBg{background:var(--danger-bg)!important}
+.info{color:var(--info)!important}
+
+/* Links must never inherit a faint gray. */
+a{color:var(--info)!important}
+a:hover{color:var(--primary)!important}
+
+/* Test/question UI. */
+.question,.questionText,.questionBox,.question-title,
+.option,.options button,.answer,.answer-option{
+  color:var(--text-strong)!important;
+}
+.option,.options button,.answer,.answer-option{
+  background:var(--surface)!important;
+  border:1px solid var(--border-strong)!important;
+}
+.option:hover,.options button:hover,.answer:hover,.answer-option:hover{
+  background:var(--surface-2)!important;
+}
+.option.selected,.answer.selected,.answer-option.selected{
+  border-color:var(--primary)!important;
+  background:color-mix(in srgb,var(--primary) 12%,var(--surface))!important;
+}
+.option.correct,.answer.correct,.answer-option.correct{
+  border-color:var(--success)!important;
+  background:var(--success-bg)!important;
+}
+.option.wrong,.answer.wrong,.answer-option.wrong{
+  border-color:var(--danger)!important;
+  background:var(--danger-bg)!important;
+}
+
+/* Progress bars and dividers. */
+.progress,.progressTrack,.barTrack{
+  background:var(--surface-3)!important;
+}
+hr,.divider{border-color:var(--border)!important}
+
+/* Prevent transparent/washed-out text on light cards. */
+[style*="color:#fff"],[style*="color: #fff"],
+[style*="color:white"],[style*="color: white"]{
+  text-shadow:none;
+}
+
+/* Mobile readability. */
+@media(max-width:700px){
+  body{font-size:15px}
+  p,li{line-height:1.55}
+  button,.btn{min-height:44px}
+  input,select,textarea{min-height:44px}
+}
+
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -180,6 +509,44 @@ body.is-testing .appTop{display:none}body.is-testing .appLayout{min-height:100vh
 @media(max-width:700px){.speedHeroMain{padding:19px}.speedHeroMain h1{font-size:31px}.speedHeroAside{padding:14px}.speedActionGrid{grid-template-columns:1fr 1fr}.topicGrid{grid-template-columns:1fr 1fr}.speedInfoGrid{grid-template-columns:1fr 1fr}.setupGrid{grid-template-columns:1fr}.factGrid{grid-template-columns:1fr}.historyRow{grid-template-columns:1fr auto}.historyScore{text-align:right}.speedResultScore{grid-template-columns:1fr}.speedScoreRing{min-height:210px}.speedScoreBig{font-size:62px}}
 @media(max-width:390px){.topicGrid,.speedActionGrid{grid-template-columns:1fr}.speedInfoGrid{grid-template-columns:1fr 1fr}}
 </style>
+
+<script>
+(function(){
+  const KEY='ssc_calc_theme';
+  try{
+    const saved=localStorage.getItem(KEY);
+    if(saved==='light'||saved==='dark'){
+      document.documentElement.setAttribute('data-theme',saved);
+    }
+  }catch(e){}
+  window.setComfortTheme=function(mode){
+    if(mode!=='light'&&mode!=='dark') return;
+    document.documentElement.setAttribute('data-theme',mode);
+    try{localStorage.setItem(KEY,mode)}catch(e){}
+  };
+})();
+</script>
+
+
+<script>
+(function(){
+  const KEY='ssc_calc_theme';
+  try{
+    const saved=localStorage.getItem(KEY);
+    if(saved==='light'||saved==='dark'){
+      document.documentElement.setAttribute('data-theme',saved);
+    }else{
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }catch(e){}
+  window.setComfortTheme=function(mode){
+    if(mode!=='light'&&mode!=='dark') return;
+    document.documentElement.setAttribute('data-theme',mode);
+    try{localStorage.setItem(KEY,mode)}catch(e){}
+  };
+})();
+</script>
+
 </head>
 <body>
 <div class="app" id="appRoot">
@@ -686,6 +1053,17 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js').catch(() => {});
   });
 }
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  // Add accessible labels to day/roadmap cards and prevent accidental text overflow.
+  document.querySelectorAll('.dayCard,.roadmapDay,.dayItem,.day-card').forEach(function(card){
+    card.style.minWidth='0';
+    card.setAttribute('role', card.getAttribute('role') || 'article');
+  });
+});
 </script>
 
 </body>

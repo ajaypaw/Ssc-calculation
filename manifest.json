@@ -1,19 +1,11 @@
 {
-  "name": "SSC Calculation Mastery",
-  "short_name": "SSC Calculation",
-  "description": "60-day SSC mental calculation practice portal.",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#080b14",
-  "theme_color": "#080b14",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "name":"SSC Calculation Mastery",
+  "short_name":"SSC Calculation",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"portrait",
+  "theme_color":"#080b14",
+  "background_color":"#080b14",
+  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
